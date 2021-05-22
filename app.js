@@ -5,11 +5,13 @@ const morgan = require('morgan');
 
 // import routers
 const nameSearchRouter = require('./routes/nameSearch');
+const redlistRouter = require('./routes/redlist');
 
 // parse request body as JSON
 app.use(morgan('dev'))
 app.use(jsonParser);
 app.use('/nameSearch', nameSearchRouter);
+app.use('/redlist', redlistRouter);
 
 
 app.listen(4000, () => {
