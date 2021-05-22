@@ -9,6 +9,8 @@
   "author": "Josh Ferriday",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1"
+    "dotenv": "^9.0.2",
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.1"
   }
 }
