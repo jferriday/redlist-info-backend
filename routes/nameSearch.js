@@ -13,9 +13,7 @@ const speciesSearch = async (req, res, next) => {
     const response = await fetch(endpoint);
     if(response.ok) {
         const jsonResponse = await response.json();
-        console.log(jsonResponse);
         req.results = jsonResponse;
-        console.log(req.results);
         next();
     };
 };

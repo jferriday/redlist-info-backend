@@ -6,7 +6,7 @@ const TOKEN = process.env.REDLIST_TOKEN;
 
 // generate a simplified result object containing desired info from redlist API
 function resultObjFromResponse(resp) {
-    console.log(resp);
+    if(resp.result[0]) {
     return {
         scientific_name: resp.result[0].scientific_name,
         common_name: resp.result[0].main_common_name,
@@ -14,6 +14,9 @@ function resultObjFromResponse(resp) {
         population_trend: resp.result[0].population_trend,
         assessment_date: resp.result[0].assessment_date
     }
+} else {
+    return {category: 'No Data'};
+}
     
 }
 
@@ -48,7 +51,6 @@ async function regionalStatus(speciesName, region) {
 async function regionalThreats(speciesName, region) {
     const url = encodeURI(endpoint + `threats/species/name/${speciesName}/region/${region}?token=${TOKEN}`)
     const response = await fetch(url);
-    console.log(response);
     if(response.ok) {
         const resp = await response.json();
     // result is an array of threat objects with code, title, timing, scope, severity, score and invasive properties
@@ -63,7 +65,15 @@ async function globalThreats(speciesName) {
     const response = await fetch(url);
     if(response.ok) {
         const resp = await response.json();
-        return resp.result;
+        let uniqueResults = [];
+        // remove duplicate entries of threats in results
+        resp.result.forEach(threat => {
+            if(!uniqueResults.includes(threat)) {
+                uniqueResults.push(threat);
+            }
+        })
+        console.log(uniqueResults);
+        return uniqueResults;
     } else {
         return {};
     }

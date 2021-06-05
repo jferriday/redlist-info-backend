@@ -13,6 +13,7 @@ router.get('/global/:species', async (req, res,) => {
 router.get('/threats/global/:species', async (req, res) => {
     const species = req.params.species;
     const threats = await redlistAPI.globalThreats(species);
+    console.log('Threats:' + threats)
     res.send(threats);
 
 })
@@ -28,7 +29,6 @@ router.get('/threats/regional/:region/:species', async (req, res) => {
     const species = req.params.species;
     const region = req.params.region;
     const threats =  await redlistAPI.regionalThreats(species, region);
-    console.log(threats);
     res.send(threats);
 })
 
