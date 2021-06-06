@@ -6,7 +6,7 @@ const TOKEN = process.env.REDLIST_TOKEN;
 
 // generate a simplified result object containing desired info from redlist API
 function resultObjFromResponse(resp) {
-    if(resp.value = '0'){
+    if(resp.value === '0'){
         return {
         scientific_name: 'No Data',
         common_name: '',
