@@ -6,6 +6,15 @@ const TOKEN = process.env.REDLIST_TOKEN;
 
 // generate a simplified result object containing desired info from redlist API
 function resultObjFromResponse(resp) {
+    if(resp.value = '0'){
+        return {
+        scientific_name: 'No Data',
+        common_name: '',
+        category: 'DD',
+        population_trend: 'No Data',
+        assessment_date: ''
+        }
+    }
     if(resp.result[0]) {
     return {
         scientific_name: resp.result[0].scientific_name,
@@ -15,7 +24,13 @@ function resultObjFromResponse(resp) {
         assessment_date: resp.result[0].assessment_date
     }
 } else {
-    return {category: 'No Data'};
+    return {
+        scientific_name: 'No Data',
+        common_name: '',
+        category: 'DD',
+        population_trend: 'No Data',
+        assessment_date: ''
+        };
 }
     
 }
@@ -24,7 +39,8 @@ async function globalStatus (speciesName) {
     const url = encodeURI(endpoint + `species/${speciesName}?token=${TOKEN}`);
     const response = await fetch(url);
     if (response.ok) {
-    const resp = await response.json();
+        const resp = await response.json();
+        console.log(resp);
 
     
     return resultObjFromResponse(resp);
@@ -39,7 +55,9 @@ async function regionalStatus(speciesName, region) {
     const response = await fetch(url);
     if(response.ok) {
         const resp = await response.json();
-        resultObjFromResponse(resp);
+        console.log(resp);
+        return resultObjFromResponse(resp);
+
     } else {
         return {};
     }
@@ -52,6 +70,7 @@ async function regionalThreats(speciesName, region) {
     const url = encodeURI(endpoint + `threats/species/name/${speciesName}/region/${region}?token=${TOKEN}`)
     const response = await fetch(url);
     if(response.ok) {
+        console.log(response);
         const resp = await response.json();
     // result is an array of threat objects with code, title, timing, scope, severity, score and invasive properties
         return resp.result;
