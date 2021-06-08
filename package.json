@@ -1,7 +1,7 @@
 {
-  "name": "seafood-guide",
+  "name": "redlist-info-backend",
   "version": "1.0.0",
-  "description": "Sustainable seafood guide",
+  "description": "Redlist Info Backend",
   "main": "index.js",
   "scripts": {
     "test": "test"
