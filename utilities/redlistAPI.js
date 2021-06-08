@@ -55,7 +55,6 @@ async function regionalStatus(speciesName, region) {
     const response = await fetch(url);
     if(response.ok) {
         const resp = await response.json();
-        console.log(resp);
         return resultObjFromResponse(resp);
 
     } else {
@@ -70,8 +69,8 @@ async function regionalThreats(speciesName, region) {
     const url = encodeURI(endpoint + `threats/species/name/${speciesName}/region/${region}?token=${TOKEN}`)
     const response = await fetch(url);
     if(response.ok) {
-        console.log(response);
         const resp = await response.json();
+        console.log(resp)
     // result is an array of threat objects with code, title, timing, scope, severity, score and invasive properties
         return resp.result;
     } else {

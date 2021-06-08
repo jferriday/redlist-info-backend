@@ -29,6 +29,7 @@ router.get('/threats/regional/:region/:species', async (req, res) => {
     const species = req.params.species;
     const region = req.params.region;
     const threats =  await redlistAPI.regionalThreats(species, region);
+    console.log('Threats:' + threats)
     res.send(threats);
 })
 

@@ -12,7 +12,7 @@ const redlistRouter = require('./routes/redlist');
 
 // CORS origin settings
 const corsOptions = {
-    origin: 'http://localhost:3000',
+    origin: ['http://localhost:3000', 'http://192.168.0.6:3000', 'https://redlistinfo.netlify.app'],
     optionsSuccessStatus: 200
 }
 app.use(cors(corsOptions));
