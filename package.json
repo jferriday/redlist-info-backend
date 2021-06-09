@@ -4,7 +4,8 @@
   "description": "Redlist Info Backend",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "start": "node app.js"
   },
   "author": "Josh Ferriday",
   "license": "ISC",
