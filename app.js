@@ -24,7 +24,7 @@ app.use('/nameSearch', nameSearchRouter);
 app.use('/redlist', redlistRouter);
 
 
-app.listen(4000, () => {
+app.listen(process.env.PORT, () => {
     console.log('listening on port 4000');
 })
 
